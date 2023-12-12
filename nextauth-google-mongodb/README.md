@@ -252,11 +252,11 @@ export { handler as GET, handler as POST }
 **EXAMPLE OF .ENV**
 
 ```markdown
-GOOGLE_CLIENT_ID=542423455749-l4nfvajedhuovsduod5kfk7gfid67u28.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
+GOOGLE_CLIENT_ID=***
+GOOGLE_CLIENT_SECRET=***
 
 NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=7f88339ca91a70e715af3ab538fe0b00
+NEXTAUTH_SECRET=***
 
-MONGODB_URI=mongodb+srv://lexferramirez:9XKq7yKLWUUpnrSK@cluster0.5xv1zo3.mongodb.net/
+MONGODB_URI=mongodb+srv://lexferramirez:<password>@cluster0.5xv1zo3.mongodb.net/
 ```
