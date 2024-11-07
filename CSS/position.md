@@ -8,17 +8,17 @@
 > [!NOTE] Relative
 > element is positioned to the Normal Flow of the document.
 >
-> then offset relative to itself based on the values of top, right, bottom, and left
+> element preserves its space and its physical space
 >
-> The offset does not affect the position of any other elements
+> The initial position of the element is top:0, rigth:0, bottom:0, left:0
 ---
 > [!IMPORTANT] Absolute
-> Element is removed from the normal document flow
+> Element is removed from the normal document flow, until its nearest parent with position relative
 >
 > no space is created or reserved for the element in the page layout
 >
-> The element is going to remove from the normal flow until its nearest parent with position relative
->
+> the properties top, right, left and bottom are going to take as reference the nearest container with position set to relative
+
 **NOTE**: use 'tranform' property to center the element
 
 ```css
