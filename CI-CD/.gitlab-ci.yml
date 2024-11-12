@@ -1,0 +1,75 @@
+image: docker:git
+services:
+  - docker:dind
+
+stages:
+  - Build Pirámide
+  - image quality Pirámide
+  - Build Oceánica
+  - image quality Oceánica
+
+variables:
+  GATSBY_API_URL: ""
+  GATSBY_INSURANCE_COMPANY: ""
+  STRAPI_API_URL: ""
+
+# COMPILE THE PROJECT
+build-project-piramide:
+  stage: Build Pirámide
+  needs: []
+  image: mhart/alpine-node:16
+  script:
+    - export GATSBY_API_URL=$GATSBY_API_URL_PIRA_QA
+    - export GATSBY_INSURANCE_COMPANY=$GATSBY_INSURANCE_COMPANY_PIRA_QA
+    - export STRAPI_API_URL=$STRAPI_API_URL_PIRA_QA 
+    - export STRAPI_TOKEN=$STRAPI_TOKEN_PIRA_QA 
+
+    - echo $GATSBY_API_URL, $GATSBY_INSURANCE_COMPANY, $STRAPI_API_URL
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - public/
+
+# Build image and upload to registry
+build-docker-img-qa-piramide:
+  stage: image quality Pirámide
+  needs: ["build-project-piramide"]
+  script:
+    - |
+        docker login registry.gitlab.com -u $USER -p $PASSWORD  
+        docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-qa-pira .
+        docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-qa-pira
+        docker images
+  only:
+    - prueba_cicd
+
+# COMPILE THE PROJECT
+build-project-Oceanica: 
+  stage: Build Oceánica
+  needs: []
+  image: mhart/alpine-node:16
+  script:
+    - export GATSBY_API_URL=$GATSBY_API_URL_OCEA_QA
+    - export GATSBY_INSURANCE_COMPANY=$GATSBY_INSURANCE_COMPANY_OCEA_QA
+    - export STRAPI_API_URL=$STRAPI_API_URL_OCEA_QA
+    - export STRAPI_TOKEN=$STRAPI_TOKEN_OCEA_QA
+
+    - echo $GATSBY_API_URL, $GATSBY_INSURANCE_COMPANY, $STRAPI_API_URL
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - public/
+
+build-docker-img-qa-Oceanica:
+  stage: image quality Oceánica
+  needs: ["build-project-Oceanica"]
+  script:
+    - |
+        docker login registry.gitlab.com -u $USER -p $PASSWORD  
+        docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-qa-ocea .
+        docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-qa-ocea
+        docker images
+  only:
+    - prueba_cicd
