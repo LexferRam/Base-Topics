@@ -145,15 +145,14 @@ Escribe nano prueba.txt, escribe algo, y presiona Ctrl + O para guardar y Ctrl +
 tiene sus propisas reglas:
 Varibles, bucles, condicionales, funciones, arreglos, comandos
 
-## Modificando permisos en la terminal
-
-> mitexto.txt : crea un archico y te permite agregar informacion(para salir ctrl + d)
+## Leer permisos en la terminal
 
 ```shell
 -rw-r--r--  1 lexferfrancisco  staff  31 Nov 27 10:49 mitexto.txt
 ```
 
 tiene read/write para el usuario, read para grupos y read para world
+Verás una cadena como -rwxr-xr--. El primer guion indica si es un archivo (-) o directorio (d), y los siguientes 9 caracteres son los permisos agrupados de tres en tres (dueño, grupo, otros).
 
 ## Conceptos básicos: Usuarios y Permisos
 
