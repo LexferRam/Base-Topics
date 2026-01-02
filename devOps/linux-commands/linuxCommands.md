@@ -1,10 +1,12 @@
 # Linux Commnads
 
-`whoami`
+`clear / ctrl + l`: limpia consola
 
-`clear`
+`cd` ejecutado solo te lleva a home
 
-`history`
+`whoami` ver usuario
+
+`history` ver historial de comandos
 
 `sudo` Executes a command with superuser (root) privileges.
 
@@ -12,11 +14,13 @@
 
 ## shell: Bash, zsh
 
+`cat /etc/shells` lista de shells disponibles en nuestro sistema
+
 `echo $SHELL`
 
 ## Redireciones y pipe
 
-- `>` Envía la salida de un comando a un archivo.(lo sobreescribe)
+- `>` Envía la salida de un comando a un archivo.(lo sobreescribe) eje: `ls -l > output.txt`
 - `>>` Igual que arriba pero **añade** al final
 - `|` Toma la salida de un comando y lo pasa como entrada al siguiente
 
@@ -30,7 +34,7 @@
 - `cp` Copies files or directories. cp file1.txt file2.txt
 - `mv` Moves or renames files and directories. mv oldname.txt newname.txt
 - `rm` Removes (deletes) a file. rm file1.txt
-- `rm -r` Recursively removes a directory and its contents. rm -r old_folder
+- `rm -r [carpeta]` Recursively removes a directory and its contents. rm -r old_folder
 
 ## Buscar archivos y contenido
 
@@ -46,12 +50,6 @@ Se usa un gestor de paquete eje: apt
 - `sudo apt install nombre`
 - `sudo apt remove nombre`
 
-## Variables de entorno
-
-- Listar todo: `printenv`
-- Buscar algo específico: `printenv | grep NOMBRE`
-- Ver el PATH: `echo $PATH`
-
 ## Permisos basicos
 
 Cuando listamos los archivos o carpetas vamos a poder ver **Dueño(persona que creó el archivo o carpeta) - grupo(grupo de users que pueden compoartir permisos) - otros**
@@ -60,6 +58,7 @@ Cuando listamos los archivos o carpetas vamos a poder ver **Dueño(persona que c
 
 - `ls -l` muestra archivos y sus permisos
 - `chmod +x script.sh` hacerlo ejecutable. +x significa "añadir permiso de ejecución (execute)". chmod Changes the permissions (mode) of a file or directory.
+- `./script.sh` ejecuta
 - `chown` `chgrp` cambiar dueño/grupo
 
 ## Ver y filtrar contenido de archivos
@@ -74,20 +73,6 @@ Cuando listamos los archivos o carpetas vamos a poder ver **Dueño(persona que c
 - nano
 - vim
 
-## Systemd (system deamon) (servicios: programas que siempre se estan ejecutando en segundo plano)
-
-- `systemctl status servicio`
-- `systemctl start servicio`
-- `systemctl stop servicio`
-- `systemctl restart servicio`
-- `systemctl enable servicio`
-- `systemctl disable servicio`
-
-## Bash scripts (crear scripts y automatizar tareas)
-
-tiene sus propisas reglas:
-Varibles, bucles, condicionales, funciones, arreglos, comandos
-
 ## Usuarios, seguridad y entorno dev
 
 - `id`
@@ -101,21 +86,14 @@ Varibles, bucles, condicionales, funciones, arreglos, comandos
 - `echo $PATH`
 - `export VAR=valor`
 - alias en `~/.bashrc`
+- Listar todo: `printenv`
+- Buscar algo específico: `printenv | grep NOMBRE`
 
 macOS (MacBook): Está basado en BSD (un derivado directo de Unix) y su núcleo se llama Darwin. Es un sistema certificado como Unix oficial.
 
 Linux: Es un "clon" de Unix creado desde cero por Linus Torvalds. No es Unix por herencia de código, sino por comportamiento.
 
-### Comparación de Estructuras
-
-| Directorio | En Linux | En macOS |
-| :--- | :--- | :--- |
-| **Archivos del sistema** | `/bin`, `/sbin`, `/usr` | `/bin`, `/sbin`, `/usr` (Igual) |
-| **Configuraciones** | `/etc` | `/etc` (Igual) |
-| **Usuarios** | `/home/nombre` | `/Users/nombre` |
-| **Aplicaciones** | `/usr/bin` o `/opt` | `/Applications` (Carpeta principal) |
-| **Dispositivos** | `/dev` | `/dev` (Igual) |
-| **Temporales** | `/tmp` | `/tmp` (Enlace simbólico a `/private/tmp`) |
+## Terminal, Shell y Editor de Texto
 
 La Terminal (o Emulador de Terminal): Es la "ventana" o la aplicación que abres (el ícono negro o transparente). Es la interfaz visual que recibe tus pulsaciones de teclado y muestra texto.
 
@@ -129,27 +107,15 @@ Siguiendo la analogía del auto:
 
 Terminal: El tablero.
 
-Zsh/Bash: El motor que procesa tus movimientos.
+Zsh/Bash: El motor que procesa tus movimientos (intérprete de comandos).
 
-Vim/Nano: Son herramientas que sacas de la guantera para modificar los documentos del sistema.
-
-como saber si cual editor tengo instalado?
-
-```sh
-    which nano
-
-    which vim
-
-    which vi
-```
+Vim/Nano: Son herramientas que sacas de la guantera para modificar los documentos del sistema (editores de texto).
 
 ## Un pequeño ejercicio para tu Mac
 
 Prueba esto en tu terminal para ver la diferencia:
 
 Escribe nano prueba.txt, escribe algo, y presiona Ctrl + O para guardar y Ctrl + X para salir.
-
-Luego intenta abrirlo con vim prueba.txt. (Para salir de Vim sin romperte la cabeza, presiona Esc, escribe :q! y presiona Enter)
 
 ```prueba.sh
     #!/usr/bin/env bash
@@ -166,20 +132,65 @@ Luego intenta abrirlo con vim prueba.txt. (Para salir de Vim sin romperte la cab
 
 **Tip de portabilidad:** Muchos desarrolladores prefieren usar ``#!/usr/bin/env bash``. Esto hace que el sistema busque dónde está instalado Bash en el sistema actual, lo cual es más flexible si trabajas entre diferentes versiones de Linux o macOS.
 
-## NANO
+## Creando un alias
 
-- ``nano archivo.sh`` si existe lo abre sino lo crea.
-- ``echo "Este es un archivo nuevo" > prueba.txt`` crea el archivo con ese texto
-- ``ctrl + x`` salir
-- ``ctrl + c`` volver
-- ``ctrl + o`` guardar
-- ``ctrl + a`` ir al inicio de una linea
-- ``ctrl + v`` siguiente pg
-- ``ctrl + y`` previa pg
-- ``ctrl + a`` coloca cursor al inicio de la linea
-- ``ctrl + e`` coloca cursor al final de la linea
-- ``ctrl + w`` permite filtrar en el archivo 
-- ``ctrl + k`` cortar y copiar linea
-- ``ctrl + u`` pegar linea
-- ``ctrl + c`` nos muestra la ubicacion del cursos
-- ``ctrl - r`` copiar info de un archivo al archivo actual
+`alias l="ls -lh"` (los alias solo se crean por sesion de terminal)
+
+## Condicionales && (se ejecutan solo si el comando anterior fue exitoso)
+
+`mkdir directoriio && cd directoriio`
+
+## Bash scripts (.sh) (crear scripts y automatizar tareas)
+
+tiene sus propisas reglas:
+Varibles, bucles, condicionales, funciones, arreglos, comandos
+
+## Modificando permisos en la terminal
+
+> mitexto.txt : crea un archico y te permite agregar informacion(para salir ctrl + d)
+
+```shell
+-rw-r--r--  1 lexferfrancisco  staff  31 Nov 27 10:49 mitexto.txt
+```
+
+tiene read/write para el usuario, read para grupos y read para world
+
+## Conceptos básicos: Usuarios y Permisos
+
+Cada archivo tiene tres niveles de propiedad y tres tipos de permisos:
+
+**Niveles de Usuario:**
+
+u (User/Owner): El propietario del archivo.
+
+g (Group): Usuarios que pertenecen al grupo del archivo.
+
+o (Others): Todos los demás usuarios.
+
+a (All): Todos los anteriores.
+
+**Tipos de Permisos:**
+
+r (Read): Lectura.
+
+w (Write): Escritura/Modificación.
+
+x (Execute): Ejecución.
+
+## Cambiando los permisos con chmod (change mode)
+
+Sintaxis: `chmod [usuario][operación][permiso] archivo`
+
+**Operaciones:** + (añadir), - (quitar), = (asignar exactamente).
+
+Ejemplos:
+
+`chmod u+x archivo.sh` → Añade permiso de ejecución al dueño.
+
+`chmod g-w documento.txt` → Quita permiso de escritura al grupo.
+
+`chmod u=rwx,g=rx,o=r foto.jpg` → Define permisos específicos para cada nivel.
+
+## Cambio de usaurio R(recursive) v(verbose)
+
+`chown -Rv lexferramirez .`
