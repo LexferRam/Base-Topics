@@ -193,3 +193,12 @@ Ejemplos:
 ## Cambio de usaurio R(recursive) v(verbose)
 
 `chown -Rv lexferramirez .`
+
+## Copia de archivo de un servidor remoto a local y visceversa
+
+``scp usuario@host_remoto:/ruta/del/archivo /ruta/local/donde/guardar``
+
+**Usuario:** mgrk8s
+**Host remoto:** 10.110.0.144
+
+Ejemplo: ``scp -r mgrk8s@10.110.0.144:/home/mgrk8s ~/Desktop/``
