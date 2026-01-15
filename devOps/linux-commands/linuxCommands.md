@@ -39,7 +39,7 @@
 ## Buscar archivos y contenido
 
 - `find` busca archivos por nombre extension y tamaño
-- `grep` busca texto dentro de archivos
+- `grep` busca texto dentro de archivos ejemplo: `history | grep email-marketing-massive` buscar en historial comandos
 
 ## Instalar programas
 
