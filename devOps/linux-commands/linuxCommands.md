@@ -202,3 +202,7 @@ Ejemplos:
 **Host remoto:** 10.110.0.144
 
 Ejemplo: ``scp -r mgrk8s@10.110.0.144:/home/mgrk8s ~/Desktop/``
+
+## npx kill-port
+
+``npx kill-port 3000`` para matar procesos en un puerto especifico
