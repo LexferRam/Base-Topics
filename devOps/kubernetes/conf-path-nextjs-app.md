@@ -1,7 +1,6 @@
 # Configuracion del path para una aplicacion Next.js en Kubernetes
 
 **En la app de NextJS**
-
 En el nextConfig.js se debe agregar las siguientes lineas:
 
 ```typescript
@@ -28,7 +27,6 @@ Todos los archivos estaticos del public se deben referenciar con el path /planin
 ```
 
 **En el ingress-controller**
-
 Se debe crear el service y el deployment para la aplicacion NextJS:
 
 ```yaml
@@ -85,3 +83,16 @@ En el ingress se debe agregar la siguiente configuracion:
         path: /planincentivo                   // Path configurado en el next.config.js
         pathType: ImplementationSpecific
 ```
+
+**Aplicar el ingress**
+``kubectl apply -f nombre-de-tu-archivo-ingress.yaml``
+
+**Verificar cambio**
+``kubectl describe ingress <nombre-del-ingress>``
+
+**Edición del ingress**
+``kubectl edit ingress <nombre-del-ingress>``
+``KUBE_EDITOR="nano" kubectl edit ingress <nombre-ingress>``
+
+**Guardar y Salir**
+Presiona ``Presiona Ctrl+O, Enter, y luego Ctrl+X``
